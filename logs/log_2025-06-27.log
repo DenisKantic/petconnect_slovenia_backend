@@ -1,0 +1,7 @@
+{"level":"INFO","timestamp":"2025-06-27T19:29:07.584+0200","caller":"middleware/logger.go:15","msg":"request","client_ip":"::1","method":"GET","path":"/ping","status":200,"latency":0.00004923}
+{"level":"INFO","timestamp":"2025-06-27T19:29:20.976+0200","caller":"middleware/logger.go:15","msg":"request","client_ip":"::1","method":"GET","path":"/ping","status":200,"latency":0.000017912}
+{"level":"INFO","timestamp":"2025-06-27T19:29:23.774+0200","caller":"middleware/logger.go:15","msg":"request","client_ip":"::1","method":"GET","path":"/ping","status":200,"latency":0.000018804}
+{"level":"INFO","timestamp":"2025-06-27T19:29:29.980+0200","caller":"middleware/logger.go:15","msg":"request","client_ip":"::1","method":"GET","path":"/pingdfwd","status":404,"latency":0.000004619}
+{"level":"WARN","timestamp":"2025-06-27T19:35:54.091+0200","caller":"middleware/logger.go:37","msg":"CLIENT ERROR","status":404,"method":"GET","path":"/pingdfwd","client_ip":"::1","latency":0.000000361}
+{"level":"INFO","timestamp":"2025-06-27T19:36:11.542+0200","caller":"middleware/logger.go:39","msg":"REQUEST","status":200,"method":"GET","path":"/ping","client_ip":"::1","latency":0.000036821}
+{"level":"WARN","timestamp":"2025-06-27T19:50:24.653+0200","caller":"middleware/logger.go:37","msg":"CLIENT ERROR","status":404,"method":"POST","path":"/ping","client_ip":"::1","latency":0.000000701}

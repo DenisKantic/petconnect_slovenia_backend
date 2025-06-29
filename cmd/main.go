@@ -1,0 +1,33 @@
+package main
+
+import (
+	"github.com/gin-gonic/gin"
+	"slovenia_petconnect/config"
+	"slovenia_petconnect/database"
+	"slovenia_petconnect/middleware"
+	"slovenia_petconnect/routes"
+	"slovenia_petconnect/utils"
+)
+
+func main() {
+
+	utils.InitLogger() // logging
+
+	r := gin.New()
+	r.Use(middleware.ZapLogger())
+
+	// load .env
+	config.LoadEnv()
+	//connect Postgres database
+	database.ConnectDB()
+
+	// ----------------registering routes----------------
+	routes.RegisterWithEmailUser(r)
+	//------------------------------------------------
+
+	r.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{"message": "Pong test"})
+	})
+
+	r.Run(":8080")
+}
