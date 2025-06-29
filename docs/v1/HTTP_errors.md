@@ -5,6 +5,7 @@
 | STATUS | MEANING           | DESCRIPTION                                                                     |
 |--------|-------------------|---------------------------------------------------------------------------------|
 | 200    | OK                | Everything worked as expected                                                   |
+| 201    | Created           | New user profile or post is created                                             |
 | 400    | Bad Request       | The request failed due to missing some required parameter                       |
 | 401    | Unauthorized      | No valid API key provided                                                       |
 | 402    | Request Failed    | The parameters were valid but the request failed                                |

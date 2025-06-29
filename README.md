@@ -3,7 +3,7 @@
 ### MVC approach (except for view in which will be used VueJS)
 
 #### version 1.0.0
-#### Last Updated: 26/06/2025 (European Date)
+#### Last Updated: 29/06/2025 (DD/MM/YYYY)
 
 ---
 Technologies used:
@@ -37,6 +37,7 @@ Technologies used:
 
 ├── docs/
     ├── v1/
+        ├── HTTP_errors.md
     
 ├── middleware/
     ├── logger.go
@@ -47,8 +48,12 @@ Technologies used:
 ├── routes/
     ├── register.go
 
+├── tests/
+    ├── register_manual_test.go
+    ├── database_test.go
 ├── utils/
     ├── logger.go
+    ├── hashedPassword.go
 
 ├── .env
 ├── docker-compose.yaml

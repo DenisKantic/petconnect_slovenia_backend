@@ -5,7 +5,6 @@ import (
 	"slovenia_petconnect/config"
 	"slovenia_petconnect/database"
 	"slovenia_petconnect/middleware"
-	"slovenia_petconnect/routes"
 	"slovenia_petconnect/utils"
 )
 
@@ -21,12 +20,12 @@ func main() {
 	//connect Postgres database
 	database.ConnectDB()
 
-	// ----------------registering routes----------------
-	routes.RegisterWithEmailUser(r)
+	// ----------------auth routes (login, singup)----------------
+	routes.SetupAuthRoutes(r)
 	//------------------------------------------------
 
 	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{"message": "Pong test"})
+		c.JSON(200, gin.H{"message": "Pong tests"})
 	})
 
 	r.Run(":8080")
