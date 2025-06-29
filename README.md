@@ -15,6 +15,11 @@ Technologies used:
     - PostgreSQL
     - ORM Golang GORM
 
+- Frontend:
+  - VueJS 3
+  - Vuetify framework
+  - Axios
+
 ## MVC folder structure
 
 ```text
@@ -23,33 +28,32 @@ Technologies used:
     
 ├── config/
     ├── config.go
-    ├── env.go
 
 ├── controllers/
-    ├── auth_controller.go
+    ├── Register.go
 
-├── middlewares/
-    ├── cors_middleware.go
-    ├── auth_middleware.go
+├── database/
+    database.go
 
-├── models/
-    ├── user.go
-    ├── post.go
 ├── docs/
     ├── v1/
     
-├── database/
-    postgres.go
+├── middleware/
+    ├── logger.go
+
+├── models/
+    ├── user.go
+
+├── routes/
+    ├── register.go
+
+├── utils/
+    ├── logger.go
 
 ├── .env
-├── Dockerfile
 ├── docker-compose.yaml
 ```
 
-implement design pattern
-factory
-
-implement algorithm in golang 
 
 
 
