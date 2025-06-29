@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"errors"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"net/http"
 	"slovenia_petconnect/database"
 	"slovenia_petconnect/models"
@@ -20,8 +22,11 @@ func RegisterWithEmailUser(c *gin.Context) {
 
 	// checking if user already exists
 	var existingUser models.User
-	if err := database.DB.Where("email = ?", request.Email).First(&existingUser).Error; err != nil {
+	if err := database.DB.Where("email = ?", request.Email).First(&existingUser).Error; err == nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Email already in use"})
+		return
+	} else if !errors.Is(err, gorm.ErrRecordNotFound) {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not find the user"})
 		return
 	}
 

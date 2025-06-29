@@ -1,4 +1,4 @@
-package routes
+package rkoutes
 
 import (
 	"github.com/gin-gonic/gin"
