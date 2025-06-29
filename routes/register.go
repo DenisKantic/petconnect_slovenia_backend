@@ -7,5 +7,6 @@ import (
 
 func RegisterWithEmailUser(r *gin.Engine) {
 
-	r.POST("/register", controllers.RegisterNewUser)
+	r.POST("/register", controllers.RegisterWithEmailUser)
+	r.POST("/registeroauth")
 }
