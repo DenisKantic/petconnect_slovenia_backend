@@ -3,7 +3,7 @@
 ### MVC approach (except for view in which will be used VueJS)
 
 #### version 1.0.0
-#### Last Updated: 26/06/2025 (European Date)
+#### Last Updated: 29/06/2025 (DD/MM/YYYY)
 
 ---
 Technologies used:
@@ -15,6 +15,11 @@ Technologies used:
     - PostgreSQL
     - ORM Golang GORM
 
+- Frontend:
+  - VueJS 3
+  - Vuetify framework
+  - Axios
+
 ## MVC folder structure
 
 ```text
@@ -23,33 +28,37 @@ Technologies used:
     
 ├── config/
     ├── config.go
-    ├── env.go
 
 ├── controllers/
-    ├── auth_controller.go
+    ├── Register.go
 
-├── middlewares/
-    ├── cors_middleware.go
-    ├── auth_middleware.go
+├── database/
+    database.go
+
+├── docs/
+    ├── v1/
+        ├── HTTP_errors.md
+    
+├── middleware/
+    ├── logger.go
 
 ├── models/
     ├── user.go
-    ├── post.go
-├── docs/
-    ├── v1/
-    
-├── database/
-    postgres.go
+
+├── routes/
+    ├── register.go
+
+├── tests/
+    ├── register_manual_test.go
+    ├── database_test.go
+├── utils/
+    ├── logger.go
+    ├── hashedPassword.go
 
 ├── .env
-├── Dockerfile
 ├── docker-compose.yaml
 ```
 
-implement design pattern
-factory
-
-implement algorithm in golang 
 
 
 
