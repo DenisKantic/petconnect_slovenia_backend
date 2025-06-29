@@ -37,6 +37,7 @@ Technologies used:
 
 ├── docs/
     ├── v1/
+        ├── HTTP_errors.md
     
 ├── middleware/
     ├── logger.go
@@ -49,6 +50,7 @@ Technologies used:
 
 ├── utils/
     ├── logger.go
+    ├── hashedPassword.go
 
 ├── .env
 ├── docker-compose.yaml
