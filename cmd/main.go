@@ -21,8 +21,8 @@ func main() {
 	//connect Postgres database
 	database.ConnectDB()
 
-	// ----------------registering routes----------------
-	routes.RegisterWithEmailUser(r)
+	// ----------------auth routes (login, singup)----------------
+	routes.SetupAuthRoutes(r)
 	//------------------------------------------------
 
 	r.GET("/ping", func(c *gin.Context) {
