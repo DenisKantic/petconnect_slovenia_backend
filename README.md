@@ -48,6 +48,9 @@ Technologies used:
 ├── routes/
     ├── register.go
 
+├── tests/
+    ├── register_manual_test.go
+    ├── database_test.go
 ├── utils/
     ├── logger.go
     ├── hashedPassword.go
