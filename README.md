@@ -20,6 +20,17 @@ Technologies used:
   - Vuetify framework
   - Axios
 
+### To run documentation in the browser for the desired function, use the command
+```
+godoc -http=:(port number)
+for example:
+godoc -http=:6060 
+```
+After that go in the browser and use the url
+```
+http://localhost:6060/pkg/slovenia_petconnect/(target folder)
+```
+
 ## MVC folder structure
 
 ```text
