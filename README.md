@@ -3,7 +3,7 @@
 ### MVC approach (except for view in which will be used VueJS)
 
 #### version 1.0.0
-#### Last Updated: 29/06/2025 (DD/MM/YYYY)
+#### Last Updated: 01/07/2025 (DD/MM/YYYY)
 
 ---
 Technologies used:
@@ -19,6 +19,17 @@ Technologies used:
   - VueJS 3
   - Vuetify framework
   - Axios
+
+### To run documentation in the browser for the desired function, use the command
+```
+godoc -http=:(port number)
+for example:
+godoc -http=:6060 
+```
+After that go in the browser and use the url
+```
+http://localhost:6060/pkg/slovenia_petconnect/(target folder)
+```
 
 ## MVC folder structure
 

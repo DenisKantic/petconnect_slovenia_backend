@@ -1,29 +1,5 @@
 package controllers
 
-/*RegisterWithEmailUser handles user registration with email and password*
-
-It performs the following steps:
-- parses and validates the incoming JSON body with user model
-- checks if the user already exists by email
-- hashes the user's password securely
-- stores the new user in the database
-- returns appropriate HTTP status codes and messages
-
-
-Expected input JSON:
-	{
-		"email": "user@test.com",
-		"username": "John Doe",
-		"password: "yourPassword",
-		"location": "New York",
-	}
-
-Possible responses:
-- 201 Created: user successfully registered
-- 400 Bad request: validation failed or email in use
-- 500 Internal Server Error: on DB or hashing failure
-*/
-
 import (
 	"errors"
 	"github.com/gin-gonic/gin"
@@ -34,6 +10,34 @@ import (
 	"slovenia_petconnect/utils"
 )
 
+// RegisterWithEmailUser handles user registration with email and password*
+//
+// It performs the following steps:
+//
+//   - parses and validates the incoming JSON body with user model
+//
+//   - checks if the user already exists by email
+//     -hashes the user's password securely
+//     -stores the new user in the database
+//
+//   - returns appropriate HTTP status codes and messages
+//
+// Expected input JSON:
+//
+//	{
+//		"email": "user@test.com",
+//		"username": "John Doe",
+//		"password: "yourPassword",
+//		"location": "New York",
+//	}
+//
+// Possible responses:
+//
+//   - 201 Created: user successfully registered
+//
+//   - 400 Bad request: validation failed or email in use
+//
+//   - 500 Internal Server Error: on DB or hashing failure
 func RegisterWithEmailUser(c *gin.Context) {
 
 	var request models.RegisterUserRequest
