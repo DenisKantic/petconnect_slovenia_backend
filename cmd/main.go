@@ -5,6 +5,7 @@ import (
 	"slovenia_petconnect/config"
 	"slovenia_petconnect/database"
 	"slovenia_petconnect/middleware"
+	"slovenia_petconnect/routes"
 	"slovenia_petconnect/utils"
 )
 
