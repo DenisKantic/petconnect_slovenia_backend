@@ -1,3 +1,4 @@
+// Package controllers  package used for handling API methods
 package controllers
 
 import (
@@ -8,6 +9,7 @@ import (
 	"slovenia_petconnect/database"
 	"slovenia_petconnect/models"
 	"slovenia_petconnect/utils"
+	"time"
 )
 
 // RegisterWithEmailUser handles user registration with email and password*
@@ -67,11 +69,15 @@ func RegisterWithEmailUser(c *gin.Context) {
 
 	// create new user
 	user := models.User{
-		Username:     request.Email,
+		Username:     request.Username,
 		Email:        request.Email,
 		PasswordHash: &hashedPassword,
 		Provider:     "manual",
+		ProviderID:   nil,
 		Location:     request.Location,
+		CreatedAt:    time.Now(),
+		UpdatedAt:    time.Now(),
+		LastLogin:    nil,
 	}
 
 	if err := database.DB.Create(&user).Error; err != nil {

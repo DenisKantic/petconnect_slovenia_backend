@@ -5,14 +5,14 @@ import "time"
 type User struct {
 	ID           uint    `gorm:"primary_key"`
 	Username     string  `gorm:"uniqueIndex;size:50" binding:"required"`
-	Email        string  `gorm:"uniqueIndex;not null"`
+	Email        string  `gorm:"uniqueIndex;not null" binding:"required"`
 	PasswordHash *string // pointer: nil if using OAuth
 	Provider     string  // "manual" or "google"
-	ProviderID   *string // e.g Google-s user ID, nil for manual
+	ProviderID   *string `gorm:"default:null"` // e.g Google-s user ID, nil for manual
 	Location     string
 	CreatedAt    time.Time
 	UpdatedAt    time.Time
-	LastLogin    *time.Time
+	LastLogin    *time.Time `gorm:"default:null"`
 }
 
 // RegisterUserRequest Validation for manual registration
