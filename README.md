@@ -3,7 +3,7 @@
 ### MVC approach (except for view in which will be used VueJS)
 
 #### version 1.0.0
-#### Last Updated: 01/07/2025 (DD/MM/YYYY)
+#### Last Updated: 03/07/2025 (DD/MM/YYYY)
 
 ---
 Technologies used:
@@ -65,6 +65,7 @@ http://localhost:6060/pkg/slovenia_petconnect/(target folder)
 ├── utils/
     ├── logger.go
     ├── hashedPassword.go
+    ├── login_jwt_token.go
 
 ├── .env
 ├── docker-compose.yaml
