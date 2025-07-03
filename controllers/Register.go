@@ -1,13 +1,16 @@
+// Package controllers  package used for handling API methods
 package controllers
 
 import (
 	"errors"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"net/http"
 	"slovenia_petconnect/database"
 	"slovenia_petconnect/models"
 	"slovenia_petconnect/utils"
+	"time"
 )
 
 // RegisterWithEmailUser handles user registration with email and password*
@@ -40,6 +43,9 @@ import (
 //   - 500 Internal Server Error: on DB or hashing failure
 func RegisterWithEmailUser(c *gin.Context) {
 
+	userIP := c.ClientIP()
+
+	fmt.Println("USER IP ", []string{userIP})
 	var request models.RegisterUserRequest
 
 	// validating JSON body
@@ -67,11 +73,16 @@ func RegisterWithEmailUser(c *gin.Context) {
 
 	// create new user
 	user := models.User{
-		Username:     request.Email,
+		Username:     request.Username,
 		Email:        request.Email,
 		PasswordHash: &hashedPassword,
 		Provider:     "manual",
+		ProviderID:   nil,
 		Location:     request.Location,
+		//ClientIP:     userIP, // wrap in slice
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+		LastLogin: nil,
 	}
 
 	if err := database.DB.Create(&user).Error; err != nil {
