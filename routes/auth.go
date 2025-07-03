@@ -1,4 +1,4 @@
-package rkoutes
+package routes
 
 import (
 	"github.com/gin-gonic/gin"
@@ -7,8 +7,10 @@ import (
 
 func SetupAuthRoutes(r *gin.Engine) {
 
-	registerGroup := r.Group("/auth")
+	authGroup := r.Group("/auth")
 	{
-		registerGroup.POST("/signup/email", controllers.RegisterWithEmailUser)
+		authGroup.POST("/signup/email", controllers.RegisterWithEmailUser)
+		authGroup.POST("/login/manual", controllers.ManualLogin)
+		authGroup.POST("/logout", controllers.Logout)
 	}
 }
