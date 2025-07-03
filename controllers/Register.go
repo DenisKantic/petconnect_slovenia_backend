@@ -3,6 +3,7 @@ package controllers
 
 import (
 	"errors"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"net/http"
@@ -42,6 +43,9 @@ import (
 //   - 500 Internal Server Error: on DB or hashing failure
 func RegisterWithEmailUser(c *gin.Context) {
 
+	userIP := c.ClientIP()
+
+	fmt.Println("USER IP ", []string{userIP})
 	var request models.RegisterUserRequest
 
 	// validating JSON body
@@ -75,9 +79,10 @@ func RegisterWithEmailUser(c *gin.Context) {
 		Provider:     "manual",
 		ProviderID:   nil,
 		Location:     request.Location,
-		CreatedAt:    time.Now(),
-		UpdatedAt:    time.Now(),
-		LastLogin:    nil,
+		//ClientIP:     userIP, // wrap in slice
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+		LastLogin: nil,
 	}
 
 	if err := database.DB.Create(&user).Error; err != nil {

@@ -10,9 +10,10 @@ type User struct {
 	Provider     string  // "manual" or "google"
 	ProviderID   *string `gorm:"default:null"` // e.g Google-s user ID, nil for manual
 	Location     string
-	CreatedAt    time.Time
-	UpdatedAt    time.Time
-	LastLogin    *time.Time `gorm:"default:null"`
+	// ClientIP     []string `gorm:"type:text[]"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	LastLogin *time.Time `gorm:"default:null"`
 }
 
 // RegisterUserRequest Validation for manual registration
@@ -21,4 +22,9 @@ type RegisterUserRequest struct {
 	Email    string `json:"email" binding:"required,email"`
 	Password string `json:"password" binding:"required,min=8"`
 	Location string `json:"location" binding:"required"`
+}
+
+type ManualLoginUserRequest struct {
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
 }
