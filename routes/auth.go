@@ -11,5 +11,6 @@ func SetupAuthRoutes(r *gin.Engine) {
 	{
 		authGroup.POST("/signup/email", controllers.RegisterWithEmailUser)
 		authGroup.POST("/login/manual", controllers.ManualLogin)
+		authGroup.POST("/logout", controllers.Logout)
 	}
 }
