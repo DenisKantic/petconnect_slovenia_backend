@@ -25,6 +25,10 @@ func main() {
 	routes.SetupAuthRoutes(r)
 	//------------------------------------------------
 
+	// --------------- Create Post for all 3 categories routes ----------------//
+	routes.SetupPostRoutes(r)
+	// ------------------------------------------------------------------------//
+
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{"message": "Pong tests"})
 	})
