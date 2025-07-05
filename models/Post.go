@@ -27,8 +27,8 @@ type AdoptPostCreateRequest struct {
 	Category    string                  `form:"category" binding:"required"`
 	Description string                  `form:"description" binding:"required"`
 	Sex         string                  `form:"sex" binding:"required"`
-	Vaccinated  bool                    `form:"vaccinated" binding:"required"`
-	Chipped     bool                    `form:"chipped" binding:"required"`
+	Vaccinated  *bool                   `form:"vaccinated" binding:"required"`
+	Chipped     *bool                   `form:"chipped" binding:"required"`
 	Location    string                  `form:"location" binding:"required"`
 	Images      []*multipart.FileHeader `form:"images" binding:"required"` // <-- For receiving files
 }
