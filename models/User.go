@@ -11,9 +11,10 @@ type User struct {
 	ProviderID   *string `gorm:"default:null"` // e.g Google-s user ID, nil for manual
 	Location     string
 	// ClientIP     []string `gorm:"type:text[]"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	LastLogin *time.Time `gorm:"default:null"`
+	AdoptPostCount int `gorm:"default:0"`
+	CreatedAt      time.Time
+	UpdatedAt      time.Time
+	LastLogin      *time.Time `gorm:"default:null"`
 }
 
 // RegisterUserRequest Validation for manual registration
