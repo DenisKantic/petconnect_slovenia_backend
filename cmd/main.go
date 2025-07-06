@@ -21,6 +21,9 @@ func main() {
 	//connect Postgres database
 	database.ConnectDB()
 
+	// serve the whole static directory for images
+	r.Static("/images", "./static")
+
 	// ----------------auth routes (login, singup)----------------
 	routes.SetupAuthRoutes(r)
 	//------------------------------------------------
