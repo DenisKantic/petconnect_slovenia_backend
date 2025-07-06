@@ -12,6 +12,7 @@ import (
 	"slovenia_petconnect/database"
 	"slovenia_petconnect/models"
 	"slovenia_petconnect/utils"
+	"strconv"
 )
 
 func AdoptPostUpload(c *gin.Context) {
@@ -32,7 +33,7 @@ func AdoptPostUpload(c *gin.Context) {
 
 	// ✅ Manually validate that images are uploaded
 	// Check for real uploaded files (not just empty placeholders)
-	var realFiles []*multipart.FileHeader
+	realFiles := []*multipart.FileHeader{}
 	for _, file := range request.Images {
 		if file != nil && file.Filename != "" && file.Size > 0 {
 			realFiles = append(realFiles, file)
@@ -85,6 +86,18 @@ func AdoptPostUpload(c *gin.Context) {
 		savedImagePaths = append(savedImagePaths, imageFilePath)
 	}
 
+	vaccinatedBool, err := strconv.ParseBool(request.Vaccinated)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid value for vaccinated"})
+		return
+	}
+
+	chippedBool, err := strconv.ParseBool(request.Chipped)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid value for chipped"})
+		return
+	}
+
 	// Create AdoptPost model and save to database
 	post := models.AdoptPost{
 		UserID:      userID,
@@ -92,8 +105,8 @@ func AdoptPostUpload(c *gin.Context) {
 		Category:    request.Category,
 		Description: request.Description,
 		Sex:         request.Sex,
-		Vaccinated:  *request.Vaccinated,
-		Chipped:     *request.Chipped,
+		Vaccinated:  vaccinatedBool,
+		Chipped:     chippedBool,
 		Location:    request.Location,
 		ImageURLs:   savedImagePaths,
 	}

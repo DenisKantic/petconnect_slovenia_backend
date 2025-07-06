@@ -24,11 +24,11 @@ type AdoptPost struct {
 
 type AdoptPostCreateRequest struct {
 	PostName    string                  `form:"postName" binding:"required,max=40"`
-	Category    string                  `form:"category" binding:"required"`
-	Description string                  `form:"description" binding:"required"`
+	Category    string                  `form:"category" binding:"required,max=10"`
+	Description string                  `form:"description" binding:"required,max=2000"`
 	Sex         string                  `form:"sex" binding:"required"`
-	Vaccinated  *bool                   `form:"vaccinated" binding:"required"`
-	Chipped     *bool                   `form:"chipped" binding:"required"`
+	Vaccinated  string                  `form:"vaccinated" binding:"required"`
+	Chipped     string                  `form:"chipped" binding:"required"`
 	Location    string                  `form:"location" binding:"required"`
 	Images      []*multipart.FileHeader `form:"images" binding:"required"` // <-- For receiving files
 }
