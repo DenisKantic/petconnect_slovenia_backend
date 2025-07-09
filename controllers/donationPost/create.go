@@ -1,4 +1,4 @@
-package controllers
+package donationPost
 
 import (
 	"fmt"
@@ -12,12 +12,11 @@ import (
 	"slovenia_petconnect/database"
 	"slovenia_petconnect/models"
 	"slovenia_petconnect/utils"
-	"strconv"
 )
 
-func AdoptPostUpload(c *gin.Context) {
+func UploadPost(c *gin.Context) {
 
-	var request models.AdoptPostCreateRequest
+	var request models.DonationPostCreateRequest
 
 	claims, ok := utils.GetClaims(c)
 	if !ok {
@@ -51,7 +50,7 @@ func AdoptPostUpload(c *gin.Context) {
 
 	// creating unique folder for storing uploaded images
 	uniqueID := uuid.New().String()[:8]
-	imagesFolderPath := fmt.Sprintf("./static/adoptImages/%s_%s", request.PostName, uniqueID)
+	imagesFolderPath := fmt.Sprintf("./static/donationImages/%s_%s", request.PostName, uniqueID)
 
 	if err := os.MkdirAll(imagesFolderPath, os.ModePerm); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to store images"})
@@ -86,29 +85,15 @@ func AdoptPostUpload(c *gin.Context) {
 		savedImagePaths = append(savedImagePaths, imageFilePath)
 	}
 
-	vaccinatedBool, err := strconv.ParseBool(request.Vaccinated)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid value for vaccinated"})
-		return
-	}
-
-	chippedBool, err := strconv.ParseBool(request.Chipped)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid value for chipped"})
-		return
-	}
-
 	// Create AdoptPost model and save to database
-	post := models.AdoptPost{
-		UserID:      userID,
-		PostName:    request.PostName,
-		Category:    request.Category,
-		Description: request.Description,
-		Sex:         request.Sex,
-		Vaccinated:  vaccinatedBool,
-		Chipped:     chippedBool,
-		Location:    request.Location,
-		ImageURLs:   savedImagePaths,
+	post := models.DonationPost{
+		UserID:         userID,
+		PostName:       request.PostName,
+		PostCategory:   request.PostCategory,
+		AnimalCategory: request.AnimalCategory,
+		Description:    request.Description,
+		Location:       request.Location,
+		ImageURLs:      savedImagePaths,
 	}
 
 	if err := database.DB.Create(&post).Error; err != nil {
@@ -118,7 +103,5 @@ func AdoptPostUpload(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, gin.H{
-		"message": "Post successfully created",
-		"post":    post,
-	})
+		"message": "Post successfully created"})
 }
