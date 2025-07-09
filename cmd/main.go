@@ -22,7 +22,7 @@ func main() {
 	database.ConnectDB()
 
 	// serve the whole static directory for images
-	r.Static("/images", "./static")
+	r.Static("/static", "./static")
 
 	// ----------------auth routes (login, singup)----------------
 	routes.SetupAuthRoutes(r)
@@ -31,6 +31,9 @@ func main() {
 	// --------------- Create Post for all 3 categories routes ----------------//
 	routes.SetupPostRoutes(r)
 	// ------------------------------------------------------------------------//
+
+	//--------------GET Routes------------------//
+	routes.SetupGetRoutes(r)
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{"message": "Pong tests"})

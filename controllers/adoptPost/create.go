@@ -1,4 +1,4 @@
-package controllers
+package adoptPost
 
 import (
 	"fmt"
@@ -15,7 +15,7 @@ import (
 	"strconv"
 )
 
-func AdoptPostUpload(c *gin.Context) {
+func UploadPost(c *gin.Context) {
 
 	var request models.AdoptPostCreateRequest
 
@@ -118,7 +118,5 @@ func AdoptPostUpload(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, gin.H{
-		"message": "Post successfully created",
-		"post":    post,
-	})
+		"message": "Post successfully created"})
 }
