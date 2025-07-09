@@ -10,5 +10,6 @@ func SetupGetRoutes(r *gin.Engine) {
 	postGroup := r.Group("/post")
 	{
 		postGroup.GET("/filter/adopt-post", adoptPost.FilterAdoptPost)
+		postGroup.GET("/pagination/adopt-post", adoptPost.GetAdoptPosts)
 	}
 }
