@@ -1,3 +1,4 @@
+// Package models containing all models for user, all type of creating post, filtering request and models for validating incoming request
 package models
 
 import (
@@ -20,6 +21,8 @@ type DonationPost struct {
 	UpdatedAt      time.Time      `json:"updatedAt"`
 }
 
+// DonationPostCreateRequest struct is written to test validation on all fields.
+// In case if failed some field, it will notify user and the POST request will be rejected
 type DonationPostCreateRequest struct {
 	PostName       string                  `form:"post_name" binding:"required,max=40"`
 	AnimalCategory string                  `form:"animal_category" binding:"required,max=10"`
@@ -29,6 +32,9 @@ type DonationPostCreateRequest struct {
 	Images         []*multipart.FileHeader `form:"images" binding:"required"` // <-- For receiving files
 }
 
+// DonationPostFilterResponse is created to send to the frontend the clean response, without information from
+// "User" module (user infos), because it's related via foreign key through GORM so it will automatically display also user table
+// With this we have more control what are we going to display in the response
 type DonationPostFilterResponse struct {
 	ID             uint      `json:"id"`
 	PostName       string    `json:"postName"`
